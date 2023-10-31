@@ -605,6 +605,9 @@
   "core/audits/bf-cache.js | title": {
     "message": "P̂áĝé d̂íd̂ń't̂ ṕr̂év̂én̂t́ b̂áĉḱ/f̂ór̂ẃâŕd̂ ćâćĥé r̂éŝt́ôŕât́îón̂"
   },
+  "core/audits/bf-cache.js | warningHeadless": {
+    "message": "B̂áĉḱ/f̂ór̂ẃâŕd̂ ćâćĥé ĉán̂ńôt́ b̂é t̂éŝt́êd́ îń ôĺd̂ H́êád̂ĺêśŝ Ćĥŕôḿê (`--headless=old`). T́ô śêé âúd̂ít̂ ŕêśûĺt̂ś, ûśê t́ĥé n̂éŵ H́êád̂ĺêśŝ Ćĥŕôḿê (`--headless=new`) ór̂ śt̂án̂d́âŕd̂ Ćĥŕôḿê."
+  },
   "core/audits/bootup-time.js | chromeExtensionsWarning": {
     "message": "Ĉh́r̂óm̂é êx́t̂én̂śîón̂ś n̂éĝát̂ív̂él̂ý âf́f̂éĉt́êd́ t̂h́îś p̂áĝé'ŝ ĺôád̂ ṕêŕf̂ór̂ḿâńĉé. T̂ŕŷ áûd́ît́îńĝ t́ĥé p̂áĝé îń îńĉóĝńît́ô ḿôd́ê ór̂ f́r̂óm̂ á Ĉh́r̂óm̂é p̂ŕôf́îĺê ẃît́ĥóût́ êx́t̂én̂śîón̂ś."
   },

@@ -26,6 +26,8 @@ const UIStrings = {
   failureReasonColumn: 'Failure reason',
   /** Label for a column in a data table; entries in the column will be a string representing the type of failure preventing the back/forward cache from being used. */
   failureTypeColumn: 'Failure type',
+  /** Warning explaining that the back/forward cache results cannot be shown in the old Headless Chrome. "back/forward" refers to the back and forward buttons found in modern browsers. "Headless Chrome" is a product name and should not be translated. */
+  warningHeadless: 'Back/forward cache cannot be tested in old Headless Chrome (`--headless=old`). To see audit results, use the new Headless Chrome (`--headless=new`) or standard Chrome.',
   /**
    * @description [ICU Syntax] Label for an audit identifying the number of back/forward cache failure reasons found in the page.
    */
@@ -60,7 +62,7 @@ class BFCache extends Audit {
       description: str_(UIStrings.description),
       supportedModes: ['navigation', 'timespan'],
       guidanceLevel: 2,
-      requiredArtifacts: ['BFCacheFailures'],
+      requiredArtifacts: ['BFCacheFailures', 'HostUserAgent'],
       scoreDisplayMode: Audit.SCORING_MODES.METRIC_SAVINGS,
     };
   }
@@ -70,6 +72,14 @@ class BFCache extends Audit {
    * @return {Promise<LH.Audit.Product>}
    */
   static async audit(artifacts) {
+    if (artifacts.HostUserAgent.indexOf('HeadlessChrome') !== -1) {
+      return {
+        score: null,
+        notApplicable: true,
+        warnings: [str_(UIStrings.warningHeadless)],
+      };
+    }
+
     const failures = artifacts.BFCacheFailures;
     if (!failures.length) return {score: 1};
 
