@@ -10,6 +10,8 @@ describe('BFCache audit', () => {
   it('fails if there are actionable failure reasons', async () => {
     /** @type {any} */
     const artifacts = {
+      // eslint-disable-next-line max-len
+      HostUserAgent: 'Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36',
       BFCacheFailures: [{
         notRestoredReasonsTree: {
           PageSupportNeeded: {
@@ -62,6 +64,8 @@ describe('BFCache audit', () => {
   it('fails if there are only non-actionable failures', async () => {
     /** @type {any} */
     const artifacts = {
+      // eslint-disable-next-line max-len
+      HostUserAgent: 'Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36',
       BFCacheFailures: [{
         notRestoredReasonsTree: {
           PageSupportNeeded: {},
@@ -84,9 +88,41 @@ describe('BFCache audit', () => {
     expect(result.details.items).toHaveLength(2);
   });
 
+  it('is n/a if using old headless', async () => {
+    /** @type {any} */
+    const artifacts = {
+      // eslint-disable-next-line max-len
+      HostUserAgent: 'Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/109.0.5000.0 Mobile Safari/537.36',
+      BFCacheFailures: [{
+        notRestoredReasonsTree: {
+          PageSupportNeeded: {},
+          Circumstantial: {
+            BackForwardCacheDisabled: ['https://example.com'],
+          },
+          SupportPending: {
+            CacheControlNoStore: ['https://frame.com'],
+          },
+        },
+      }],
+    };
+
+    const result = await BFCache.audit(artifacts);
+
+    expect(result.displayValue).toBeUndefined();
+    expect(result.score).toEqual(null);
+    expect(result.details).toBeUndefined();
+
+    expect(result.warnings).toHaveLength(1);
+    expect(result.warnings?.[0]).toBeDisplayString(
+      /Back\/forward cache cannot be tested in old Headless/
+    );
+  });
+
   it('passes if there are no failures', async () => {
     /** @type {any} */
     const artifacts = {
+      // eslint-disable-next-line max-len
+      HostUserAgent: 'Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36',
       BFCacheFailures: [{
         notRestoredReasonsTree: {
           PageSupportNeeded: {},
