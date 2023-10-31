@@ -75,7 +75,8 @@ class BFCache extends Audit {
     // Old headless mode does not obfuscate the specific Chrome version in the UA string
     // Old Headless Example: HeadlessChrome/120.0.6099.1
     // New Headless Example: HeadlessChrome/120.0.0.0
-    const isOldHeadless = /HeadlessChrome\/[0-9]+\.0.[0-9]{2,}.0/.test(artifacts.HostUserAgent);
+    const isOldHeadless =
+      /HeadlessChrome\/[0-9]+\.[0-9]+.[0-9]{2,}.[0-9]+/.test(artifacts.HostUserAgent);
     if (isOldHeadless) {
       return {
         score: null,
