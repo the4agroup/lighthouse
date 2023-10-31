@@ -606,7 +606,7 @@
     "message": "Page didn't prevent back/forward cache restoration"
   },
   "core/audits/bf-cache.js | warningHeadless": {
-    "message": "Back/forward cache cannot be tested in old Headless Chrome (`--headless=old`). To see audit results, use the new Headless Chrome (`--headless=new`) or standard Chrome."
+    "message": "Back/forward cache cannot be tested in old Headless Chrome (`--chrome-flags=\"--headless=old\"`). To see audit results, use the new Headless Chrome (`--chrome-flags=\"--headless=new\"`) or standard Chrome."
   },
   "core/audits/bootup-time.js | chromeExtensionsWarning": {
     "message": "Chrome extensions negatively affected this page's load performance. Try auditing the page in incognito mode or from a Chrome profile without extensions."

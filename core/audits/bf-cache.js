@@ -27,7 +27,7 @@ const UIStrings = {
   /** Label for a column in a data table; entries in the column will be a string representing the type of failure preventing the back/forward cache from being used. */
   failureTypeColumn: 'Failure type',
   /** Warning explaining that the back/forward cache results cannot be shown in the old Headless Chrome. "back/forward" refers to the back and forward buttons found in modern browsers. "Headless Chrome" is a product name and should not be translated. */
-  warningHeadless: 'Back/forward cache cannot be tested in old Headless Chrome (`--headless=old`). To see audit results, use the new Headless Chrome (`--headless=new`) or standard Chrome.',
+  warningHeadless: 'Back/forward cache cannot be tested in old Headless Chrome (`--chrome-flags="--headless=old"`). To see audit results, use the new Headless Chrome (`--chrome-flags="--headless=new"`) or standard Chrome.',
   /**
    * @description [ICU Syntax] Label for an audit identifying the number of back/forward cache failure reasons found in the page.
    */
