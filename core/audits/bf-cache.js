@@ -62,7 +62,7 @@ class BFCache extends Audit {
       description: str_(UIStrings.description),
       supportedModes: ['navigation', 'timespan'],
       guidanceLevel: 2,
-      requiredArtifacts: ['BFCacheFailures', 'HostUserAgent'],
+      requiredArtifacts: ['BFCacheFailures', 'HostProduct'],
       scoreDisplayMode: Audit.SCORING_MODES.METRIC_SAVINGS,
     };
   }
@@ -72,12 +72,7 @@ class BFCache extends Audit {
    * @return {Promise<LH.Audit.Product>}
    */
   static async audit(artifacts) {
-    // Old headless mode does not obfuscate the specific Chrome version in the UA string
-    // Old Headless Example: HeadlessChrome/120.0.6099.1
-    // New Headless Example: HeadlessChrome/120.0.0.0
-    const isOldHeadless =
-      /HeadlessChrome\/[0-9]+\.[0-9]+.[0-9]{2,}.[0-9]+/.test(artifacts.HostUserAgent);
-    if (isOldHeadless) {
+    if (/HeadlessChrome/.test(artifacts.HostProduct)) {
       return {
         score: null,
         notApplicable: true,

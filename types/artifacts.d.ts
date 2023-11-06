@@ -53,6 +53,8 @@ interface UniversalBaseArtifacts {
   HostFormFactor: 'desktop'|'mobile';
   /** The user agent string of the version of Chrome used. */
   HostUserAgent: string;
+  /** The product string of the version of Chrome used. */
+  HostProduct: string;
   /** Information about how Lighthouse artifacts were gathered. */
   GatherContext: {gatherMode: Gatherer.GatherMode};
 }
